@@ -1,6 +1,4 @@
 import 'package:bloc_weather_example/bloc/weather_bloc.dart';
-import 'package:bloc_weather_example/model/weather.dart';
-import 'package:bloc_weather_example/services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,26 +15,29 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset('assets/bg.jpg'),
+        Image.asset(
+          'assets/bg.jpg',
+          fit: BoxFit.cover,
+        ),
         Scaffold(
           backgroundColor: Colors.transparent,
-          body: BlocConsumer<WeatherBloc, WeatherState>(
-            listener: (BuildContext context, state) {
+          body: BlocBuilder<WeatherBloc, WeatherState>(
+            builder: (BuildContext context, state) {
               if (state is WeatherLoadingState) {
                 print('Weather Loading State');
                 return Center(
                   child: CircularProgressIndicator(),
                 );
               }
-              if (state is WeatherLoadedState) {
-                print(state.weather.temperature);
-              }
-            },
-            builder: (BuildContext context, state) {
               return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    state is WeatherLoadedState
+                        ? WeatherCard(
+                            state: state,
+                          )
+                        : Container(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
@@ -92,6 +93,23 @@ class _HomeState extends State<Home> {
           ),
         ),
       ],
+    );
+  }
+}
+
+class WeatherCard extends StatelessWidget {
+  WeatherLoadedState state;
+  WeatherCard({this.state});
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Text(
+        state.weather.temperature.toString(),
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 50.0,
+        ),
+      ),
     );
   }
 }
