@@ -10,6 +10,7 @@ class ApiService {
     if (response.statusCode == 200) {
       var decodedData = jsonDecode(response.body);
       Weather _weather = Weather(
+          city: city,
           temperature: decodedData['temperature'],
           yesterdayMax: decodedData['yesterdayMax'],
           yesterdayMin: decodedData['yesterdayMin'],

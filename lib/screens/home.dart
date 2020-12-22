@@ -1,4 +1,5 @@
 import 'package:bloc_weather_example/bloc/weather_bloc.dart';
+import 'package:bloc_weather_example/screens/weather_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,6 +39,9 @@ class _HomeState extends State<Home> {
                             state: state,
                           )
                         : Container(),
+                    SizedBox(
+                      height: 30.0,
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
@@ -93,23 +97,6 @@ class _HomeState extends State<Home> {
           ),
         ),
       ],
-    );
-  }
-}
-
-class WeatherCard extends StatelessWidget {
-  WeatherLoadedState state;
-  WeatherCard({this.state});
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Text(
-        state.weather.temperature.toString(),
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 50.0,
-        ),
-      ),
     );
   }
 }

@@ -4,10 +4,13 @@ class Weather {
   int yesterdayMin;
   int todayMax;
   int todayMin;
-  Weather(
-      {this.temperature,
-      this.yesterdayMax,
-      this.yesterdayMin,
-      this.todayMax,
-      this.todayMin});
+  String city;
+  Weather({
+    this.city,
+    this.temperature,
+    this.yesterdayMax,
+    this.yesterdayMin,
+    this.todayMax,
+    this.todayMin,
+  });
 }
