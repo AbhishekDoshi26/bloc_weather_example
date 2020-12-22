@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
-import 'package:bloc_weather_example/screens/main.dart' as app;
+import 'package:bloc_weather_example/main.dart' as app;
 
 void main() => run(_testMain);
 
